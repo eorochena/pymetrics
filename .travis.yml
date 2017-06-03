@@ -7,13 +7,17 @@ python:
   - "3.5"
   - "3.6"
   - "pypy"
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
 before_install:
   - sudo apt-get update
   - sudo apt-get install snmp -y
   - sudo apt-get install snmp-mibs-downloader -y
   - sudo apt-get install libsnmp-dev -y
   - sudo apt-get install gcc python-dev -y
-  - cat /etc/lsb-release
 install:
   - pip install -r requirements.txt
 script: py.test
