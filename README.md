@@ -1,2 +1,2 @@
 # pymetrics
-system-metrics using SNMP
+sending system-metrics using SNMP to graphite
