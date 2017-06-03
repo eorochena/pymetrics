@@ -10,6 +10,7 @@ python:
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install libsnmp-dev
+  - sudo apt-get -y install gcc python-dev
 install:
   - pip install -r requirements.txt
 script: py.test
