@@ -69,6 +69,13 @@ bytes_written_since_boot_disk2 = '1.3.6.1.4.1.2021.13.15.1.1.4.30'
 bytes_read_accesses_since_boot_disk2 = '1.3.6.1.4.1.2021.13.15.1.1.5.30'
 bytes_write_accesses_since_boot_disk2 = '1.3.6.1.4.1.2021.13.15.1.1.6.30'
 
+# Number of Cores
+core_count = os.popen('grep -c ^processor /proc/cpuinfo').read()
+
+# Load
+load_avg_1 = os.popen("cat /proc/loadavg|awk '{print $1,$2,$3}'").read()[0]
+load_avg_5 = os.popen("cat /proc/loadavg|awk '{print $1,$2,$3}'").read()[1]
+load_avg_15 = os.popen("cat /proc/loadavg|awk '{print $1,$2,$3}'").read()[2]
 
 
 while True:
@@ -268,5 +275,9 @@ while True:
         result = '%s.%s.bytes_write_accesses_since_boot_disk2.%s %s %d\n' % (
         roxie_name, server.replace('.', '_').replace('\n', ''), 'count',
         get_bytes_write_accesses_since_boot_disk2.value, time.time())
+
+        result = '%s.%s.core_count.%s %s %d\n' % (roxie_name, server.replace('.', '_').replace('\n', ''),
+                                                  'count', core_count, time.time())
+        sender.sendall(result)
 
         time.sleep(1)
