@@ -77,6 +77,12 @@ load_avg_1 = os.popen("cat /proc/loadavg|awk '{print $1,$2,$3}'").read()[0]
 load_avg_5 = os.popen("cat /proc/loadavg|awk '{print $1,$2,$3}'").read()[1]
 load_avg_15 = os.popen("cat /proc/loadavg|awk '{print $1,$2,$3}'").read()[2]
 
+# Memory Info
+memory_info = os.popen('cat /proc/meminfo').readlines()
+MemTotal = memory_info[0].strip()
+MemFree = memory_info[1].strip()
+MemAvailable = memory_info[2].strip()
+
 
 while True:
     for server in server_list.IPs():
