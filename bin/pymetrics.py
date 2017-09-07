@@ -82,7 +82,9 @@ memory_info = os.popen('cat /proc/meminfo').readlines()
 MemTotal = memory_info[0].strip()
 MemFree = memory_info[1].strip()
 MemAvailable = memory_info[2].strip()
-
+CachedMem = memory_info[4].strip()
+SwapTotal = memory_info[14].strip()
+SwapFree = memory_info[15].strip()
 
 while True:
     for server in server_list.IPs():
